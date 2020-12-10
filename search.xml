@@ -5,6 +5,7 @@
     <url>/2020/12/10/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/</url>
     <content><![CDATA[<h4 id="冒泡排序（BubbleSort）"><a href="#冒泡排序（BubbleSort）" class="headerlink" title="冒泡排序（BubbleSort）"></a>冒泡排序（BubbleSort）</h4><hr>
 <h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><pre><code>比较两个相邻的元素，将值大的元素交换至右端。</code></pre>
+<a id="more"></a>
 <h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><pre><code>依次比较相邻的两个数，将小数放在前面，大数放在后面。即在第一躺：首先比较第1个数和第2数，将小数放在前，大数放在后。然后比较第2数和第3数，将小数放在前，大数放在后，如此继续。直到比较最后两个数，将小数放在前，大数放在后。重复第一趟步骤，直到排序完成。
 
 第一躺比较完成后，最后一个数一定是数组中最大的，所以第二趟时最后一个数不参与比较。
@@ -58,8 +59,24 @@
 <hr>
 <h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><pre><code>O(n^2)</code></pre>
 <hr>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class BubbleSort&#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		int[] arr &#x3D; &#123;5,3,6,8,7,9,4,2&#125;;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		for(int i&#x3D;0;i&lt;arr.length;i++)&#123;</span><br><span class="line">			for(int j&#x3D;0;j&lt;arr.length-1-i;j++)&#123;</span><br><span class="line">				if(arr[j]&gt;arr[j+1])&#123;</span><br><span class="line">					int temp &#x3D; arr[j];</span><br><span class="line">					arr[j]&#x3D;arr[j+1];</span><br><span class="line">					arr[j+1]&#x3D;temp;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		for(int num:arr)&#123;</span><br><span class="line">			System.out.print(num+&quot; &quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>]]></content>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class BubbleSort&#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		int[] arr &#x3D; &#123;5,3,6,8,7,9,4,2&#125;;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		for(int i&#x3D;0;i&lt;arr.length;i++)&#123;</span><br><span class="line">			for(int j&#x3D;0;j&lt;arr.length-1-i;j++)&#123;</span><br><span class="line">				if(arr[j]&gt;arr[j+1])&#123;</span><br><span class="line">					int temp &#x3D; arr[j];</span><br><span class="line">					arr[j]&#x3D;arr[j+1];</span><br><span class="line">					arr[j+1]&#x3D;temp;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		for(int num:arr)&#123;</span><br><span class="line">			System.out.print(num+&quot; &quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>排序</category>
+      </categories>
+      <tags>
+        <tag>排序</tag>
+        <tag>基础算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>选择排序</title>
+    <url>/2020/12/08/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><hr>
+<h2 id="O-n-2-且不稳定"><a href="#O-n-2-且不稳定" class="headerlink" title="O(n^2) 且不稳定"></a>O(n^2) 且不稳定</h2><h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><hr>
+<p>每一遍找出所剩下的数中最小的那个和首位进行交换</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class SelectionSort&#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		int arr[] &#x3D; &#123;5,3,6,8,7,9,4,2&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		for(int i &#x3D; 0;i&lt;arr.length-1;i++)&#123;</span><br><span class="line">			int minPos &#x3D; i;</span><br><span class="line"></span><br><span class="line">			for(int j&#x3D;i+1;j&lt;arr.length;j++)&#123;</span><br><span class="line">				minPos &#x3D; arr[j] &lt; arr[minPos] ? j : minPos;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			int temp &#x3D; arr[i];</span><br><span class="line">			arr[i] &#x3D; temp;</span><br><span class="line">			arr[minPos] &#x3D; temp;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">		for(int i&#x3D;0;i&lt;arr.length;i++)&#123;</span><br><span class="line">			System.out.print(arr[i]+&quot; &quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>排序</category>
       </categories>
@@ -87,9 +104,9 @@
     <title>插入排序</title>
     <url>/2020/12/10/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/</url>
     <content><![CDATA[<h4 id="插入排序（InsertSort）"><a href="#插入排序（InsertSort）" class="headerlink" title="插入排序（InsertSort）"></a>插入排序（InsertSort）</h4><hr>
-<h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><pre><code>每一步将一个待排序的数据插入到前面已经排好序的有序序列中，直到插完所有元素为止。一般从第二个数开始插。
-
-5,3,6,8,7,2
+<h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><pre><code>每一步将一个待排序的数据插入到前面已经排好序的有序序列中，直到插完所有元素为止。一般从第二个数开始插。</code></pre>
+<a id="more"></a>
+<pre><code>5,3,6,8,7,2
 
 第一步：3与5比较，3小于5，插到前面 ：3，5，6，8，7，2
 第二步：6与5比较，6大于5，插到后面：3，5，6，8，7，2
@@ -108,24 +125,6 @@
 <h5 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h5><pre><code>O(n^2),最好是O(n)</code></pre>
 <hr>
 <h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class InsertSort&#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		int[] arr &#x3D; &#123;5,3,6,8,7,9,4,2&#125;;</span><br><span class="line"></span><br><span class="line">		for(int i&#x3D;1;i&lt;arr.length;i++)&#123;</span><br><span class="line">			for(int j&#x3D;i;j&gt;0;j--)&#123;</span><br><span class="line">				if(arr[j]&lt;arr[j-1])&#123;</span><br><span class="line">					int temp &#x3D; arr[j];</span><br><span class="line">					arr[j]&#x3D;arr[j-1];</span><br><span class="line">					arr[j-1]&#x3D;temp;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		for(int num:arr)&#123;</span><br><span class="line">			System.out.print(num+&quot; &quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-]]></content>
-      <categories>
-        <category>排序</category>
-      </categories>
-      <tags>
-        <tag>排序</tag>
-        <tag>基础算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>选择排序</title>
-    <url>/2020/12/08/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><hr>
-<h2 id="O-n-2-且不稳定"><a href="#O-n-2-且不稳定" class="headerlink" title="O(n^2) 且不稳定"></a>O(n^2) 且不稳定</h2><h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><hr>
-<p>每一遍找出所剩下的数中最小的那个和首位进行交换</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class SelectionSort&#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		int arr[] &#x3D; &#123;5,3,6,8,7,9,4,2&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		for(int i &#x3D; 0;i&lt;arr.length-1;i++)&#123;</span><br><span class="line">			int minPos &#x3D; i;</span><br><span class="line"></span><br><span class="line">			for(int j&#x3D;i+1;j&lt;arr.length;j++)&#123;</span><br><span class="line">				minPos &#x3D; arr[j] &lt; arr[minPos] ? j : minPos;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			int temp &#x3D; arr[i];</span><br><span class="line">			arr[i] &#x3D; temp;</span><br><span class="line">			arr[minPos] &#x3D; temp;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">		for(int i&#x3D;0;i&lt;arr.length;i++)&#123;</span><br><span class="line">			System.out.print(arr[i]+&quot; &quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
 ]]></content>
       <categories>
         <category>排序</category>
