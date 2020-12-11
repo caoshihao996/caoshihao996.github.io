@@ -20,21 +20,21 @@
     var CONFIG = {"hostname":"caoshihao996.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="冒泡排序（BubbleSort） 原理比较两个相邻的元素，将值大的元素交换至右端。">
+  <meta name="description" content="希尔排序 原理插入排序的升级版，每隔固定增量（gap）数量数组元素为不同组，对各组进行插入排序。然后，减小gap的值，再次分别对各组进行插入排序，直到gap&#x3D;&#x3D;1，则排序完成。 由于开始时，gap的取值较大，每个子序列中的元素较少，排序速度较快，到排序后期gap取值逐渐变小，子序列中元素个数逐渐增多，但由于前面工作的基础，大多数元素已经基本有序，所以排序速度仍然很快。 &lt;!--more--&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="冒泡排序">
-<meta property="og:url" content="https://caoshihao996.github.io/2020/12/10/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:title" content="希尔排序">
+<meta property="og:url" content="https://caoshihao996.github.io/2020/12/11/shellsort/index.html">
 <meta property="og:site_name" content="凌晨四点">
-<meta property="og:description" content="冒泡排序（BubbleSort） 原理比较两个相邻的元素，将值大的元素交换至右端。">
+<meta property="og:description" content="希尔排序 原理插入排序的升级版，每隔固定增量（gap）数量数组元素为不同组，对各组进行插入排序。然后，减小gap的值，再次分别对各组进行插入排序，直到gap&#x3D;&#x3D;1，则排序完成。 由于开始时，gap的取值较大，每个子序列中的元素较少，排序速度较快，到排序后期gap取值逐渐变小，子序列中元素个数逐渐增多，但由于前面工作的基础，大多数元素已经基本有序，所以排序速度仍然很快。 &lt;!--more--&amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-12-10T03:06:18.222Z">
-<meta property="article:modified_time" content="2020-12-10T15:44:28.687Z">
+<meta property="article:published_time" content="2020-12-11T14:52:13.582Z">
+<meta property="article:modified_time" content="2020-12-11T15:59:32.017Z">
 <meta property="article:author" content="CAO ShiHao">
 <meta property="article:tag" content="排序">
 <meta property="article:tag" content="基础算法">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://caoshihao996.github.io/2020/12/10/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
+<link rel="canonical" href="https://caoshihao996.github.io/2020/12/11/shellsort/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>冒泡排序 | 凌晨四点</title>
+  <title>希尔排序 | 凌晨四点</title>
   
 
 
@@ -196,7 +196,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://caoshihao996.github.io/2020/12/10/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
+    <link itemprop="mainEntityOfPage" href="https://caoshihao996.github.io/2020/12/11/shellsort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -209,7 +209,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          冒泡排序
+          希尔排序
         </h1>
 
         <div class="post-meta">
@@ -220,7 +220,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-12-10 11:06:18 / 修改时间：23:44:28" itemprop="dateCreated datePublished" datetime="2020-12-10T11:06:18+08:00">2020-12-10</time>
+              <time title="创建时间：2020-12-11 22:52:13 / 修改时间：23:59:32" itemprop="dateCreated datePublished" datetime="2020-12-11T22:52:13+08:00">2020-12-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,63 +243,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="冒泡排序（BubbleSort）"><a href="#冒泡排序（BubbleSort）" class="headerlink" title="冒泡排序（BubbleSort）"></a>冒泡排序（BubbleSort）</h4><hr>
-<h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><pre><code>比较两个相邻的元素，将值大的元素交换至右端。</code></pre>
-<a id="more"></a>
-<h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><pre><code>依次比较相邻的两个数，将小数放在前面，大数放在后面。即在第一躺：首先比较第1个数和第2数，将小数放在前，大数放在后。然后比较第2数和第3数，将小数放在前，大数放在后，如此继续。直到比较最后两个数，将小数放在前，大数放在后。重复第一趟步骤，直到排序完成。
+        <h4 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h4><hr>
+<h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><pre><code>插入排序的升级版，每隔固定增量（gap）数量数组元素为不同组，对各组进行插入排序。然后，减小gap的值，再次分别对各组进行插入排序，直到gap==1，则排序完成。
+由于开始时，gap的取值较大，每个子序列中的元素较少，排序速度较快，到排序后期gap取值逐渐变小，子序列中元素个数逐渐增多，但由于前面工作的基础，大多数元素已经基本有序，所以排序速度仍然很快。
+&lt;!--more--&gt;
+第一趟取gap的方法是：n/3向下取整+1=3（关于gap的取法之后会有介绍）。将整个数据列划分为间隔为3的3个子序列，然后对每一个子序列执行直接插入排序，相当于对整个序列执行了部分排序调整。</code></pre>
+<h5 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h5><pre><code>int[] arr = &#123;3,2,4,1,8,5,6&#125;
 
-第一躺比较完成后，最后一个数一定是数组中最大的，所以第二趟时最后一个数不参与比较。
-同理，第二趟完成后，倒数第二个一定是数组中第二大的，所以第三趟时，倒数两个数不参与比较。依次类推。。。
+初始化gap
+h = 1
+h = h*3+1
 
-5,3,6,8,7,9,4,2
-
-第一躺：
-    第一次：5与3比较，5大于3，交换位置：3，5，6，8，7，9，4，2
-    第二次：5与6比较，5小于6，不交换位置：3，5，6，8，7，9，4，2
-    第三次：6与8比较，6小于8，不交换位置：3，5，6，8，7，9，4，2
-    第四次：8与7比较，8大于7，交换位置：3，5，6，7，8，9，4，2
-    第五次：8与9比较，8小于9，不交换位置：3，5，6，7，8，9，4，2
-    第六次：9与4比较，9大于4，交换位置：3，5，6，7，8，4，9，2
-    第七次：9与2比较，9大于2，交换位置：3，5，6，7，8，4，2，9
-
-第二趟：
-    第一次：3与5比较，3小于5，不交换位置：3，5，6，7，8，4，2，9
-    第二次：5与6比较，5小于6，不交换位置：3，5，6，7，8，4，2，9
-    第三次：6与7比较，6小于7，不交换位置：3，5，6，7，8，4，2，9
-    第四次：7与8比较，7小于8，不交换位置：3，5，6，7，8，4，2，9
-    第五次：8与4比较，8大于4，交换位置：3，5，6，7，4，8，2，9
-    第六次：8与2比较，8大于2，交换位置：3，5，6，7，4，2，8，9
-
-第三趟：
-    第一次：3与5比较，3小于5，不交换位置：3，5，6，7，4，2，8，9
-    第二次：5与6比较，5小于6，不交换位置：3，5，6，7，4，2，8，9
-    第三次：6与7比较，6小于7，不交换位置：3，5，6，7，4，2，8，9
-    第四次：7与4比较，7大于4，交换位置：3，5，6，4，7，2，8，9
-    第五次：7与2比较，7大于2，交换位置：3，5，6，4，2，7，8，9
-
-第四趟：
-    第一次：3与5比较，3小于5，不交换位置：3，5，6，4，2，7，8，9
-    第二次：5与6比较，5小于6，不交换位置：3，5，6，4，2，7，8，9
-    第三次：6与4比较，6大于4，交换位置：3，5，4，6，2，7，8，9
-    第四次：6与2比较，6大于2，交换位置：3，5，4，2，6，7，8，9
-
-第五趟：
-    第一次：3与5比较，3小于5，不交换位置：3，5，4，2，6，7，8，9
-    第二次：5与4比较，5大于4，交换位置：3，4，5，2，6，7，8，9
-    第三次：5与2比较，5大于2，交换位置：3，4，2，5，6，7，8，9
-
-第六趟：
-    第一次：3与4比较，3小于4，不交换位置：3，4，2，5，6，7，8，9
-    第二次：4与2比较，4大于2，交换位置：3，2，4，5，6，7，8，9
-
-第七躺：
-    第一次：3与2比较，3大于2，交换位置：2，3，4，5，6，7，8，9</code></pre>
+h&lt;=arr.length/3</code></pre>
 <hr>
-<pre><code>最终结果&#123;2，3，4，5，6，7，8，9&#125;</code></pre>
-<hr>
-<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><pre><code>O(n^2)</code></pre>
-<hr>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class BubbleSort&#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		int[] arr &#x3D; &#123;5,3,6,8,7,9,4,2&#125;;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		for(int i&#x3D;0;i&lt;arr.length;i++)&#123;</span><br><span class="line">			for(int j&#x3D;0;j&lt;arr.length-1-i;j++)&#123;</span><br><span class="line">				if(arr[j]&gt;arr[j+1])&#123;</span><br><span class="line">					int temp &#x3D; arr[j];</span><br><span class="line">					arr[j]&#x3D;arr[j+1];</span><br><span class="line">					arr[j+1]&#x3D;temp;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		for(int num:arr)&#123;</span><br><span class="line">			System.out.print(num+&quot; &quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class ShellSort&#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		int[] arr &#x3D; &#123;3,2,4,1,8,5,6&#125;;</span><br><span class="line"></span><br><span class="line">		int h &#x3D; 1;</span><br><span class="line">		while(h&lt;&#x3D;arr.length&#x2F;3)&#123;</span><br><span class="line">			h&#x3D;h*3+1;</span><br><span class="line">		&#125;&#x2F;&#x2F;初始化gap的方法</span><br><span class="line"></span><br><span class="line">		for(int gap&#x3D;h;gap&gt;0;gap&#x3D;(gap-1)&#x2F;3)&#123;</span><br><span class="line">			for(int i&#x3D;gap;i&lt;arr.length;i++)&#123;</span><br><span class="line">				for(int j&#x3D;i;j&gt;gap-1;j-&#x3D;gap)&#123;</span><br><span class="line">					if(arr[j]&lt;arr[j-gap])&#123;</span><br><span class="line">						swap(arr,j,j-gap);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	static void swap(int[] arr, int i, int j)&#123;</span><br><span class="line">		arr[i] &#x3D; arr[j] + arr[i];</span><br><span class="line">		arr[j] &#x3D; arr[i] - arr[j];</span><br><span class="line">		arr[i] &#x3D; arr[i] - arr[j];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -318,13 +276,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/12/08/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" rel="prev" title="选择排序">
-      <i class="fa fa-chevron-left"></i> 选择排序
+    <a href="/2020/12/10/%E7%AE%80%E5%8D%95%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" rel="prev" title="简单排序算法总结">
+      <i class="fa fa-chevron-left"></i> 简单排序算法总结
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/12/10/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" rel="next" title="插入排序">
-      插入排序 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -383,7 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%EF%BC%88BubbleSort%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">冒泡排序（BubbleSort）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number"></span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number"></span> <span class="nav-text">代码</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">希尔排序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
