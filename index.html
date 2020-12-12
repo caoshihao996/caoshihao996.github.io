@@ -189,6 +189,82 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://caoshihao996.github.io/2020/12/12/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CAO ShiHao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="凌晨四点">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/12/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">归并排序</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-12 22:58:46 / 修改时间：23:42:55" itemprop="dateCreated datePublished" datetime="2020-12-12T22:58:46+08:00">2020-12-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8E%92%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">排序</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><hr>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><pre><code>归并排序是利用归并的思想实现的排序方法，该算法采用经典的分治策略，将问题分为一些小问题然后递归求解，而治的阶段将分的阶段得到的各答案修补在一起。</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/12/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://caoshihao996.github.io/2020/12/11/shellsort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -212,10 +288,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-12-11 22:52:13 / 修改时间：23:59:32" itemprop="dateCreated datePublished" datetime="2020-12-11T22:52:13+08:00">2020-12-11</time>
+              <time title="创建时间：2020-12-11 22:52:13" itemprop="dateCreated datePublished" datetime="2020-12-11T22:52:13+08:00">2020-12-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-12 00:10:45" itemprop="dateModified" datetime="2020-12-12T00:10:45+08:00">2020-12-12</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -239,19 +321,15 @@
       
           <h4 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h4><hr>
 <h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><pre><code>插入排序的升级版，每隔固定增量（gap）数量数组元素为不同组，对各组进行插入排序。然后，减小gap的值，再次分别对各组进行插入排序，直到gap==1，则排序完成。
-由于开始时，gap的取值较大，每个子序列中的元素较少，排序速度较快，到排序后期gap取值逐渐变小，子序列中元素个数逐渐增多，但由于前面工作的基础，大多数元素已经基本有序，所以排序速度仍然很快。
-&lt;!--more--&gt;
-第一趟取gap的方法是：n/3向下取整+1=3（关于gap的取法之后会有介绍）。将整个数据列划分为间隔为3的3个子序列，然后对每一个子序列执行直接插入排序，相当于对整个序列执行了部分排序调整。</code></pre>
-<h5 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h5><pre><code>int[] arr = &#123;3,2,4,1,8,5,6&#125;
-
-初始化gap
-h = 1
-h = h*3+1
-
-h&lt;=arr.length/3</code></pre>
-<hr>
-<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class ShellSort&#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		int[] arr &#x3D; &#123;3,2,4,1,8,5,6&#125;;</span><br><span class="line"></span><br><span class="line">		int h &#x3D; 1;</span><br><span class="line">		while(h&lt;&#x3D;arr.length&#x2F;3)&#123;</span><br><span class="line">			h&#x3D;h*3+1;</span><br><span class="line">		&#125;&#x2F;&#x2F;初始化gap的方法</span><br><span class="line"></span><br><span class="line">		for(int gap&#x3D;h;gap&gt;0;gap&#x3D;(gap-1)&#x2F;3)&#123;</span><br><span class="line">			for(int i&#x3D;gap;i&lt;arr.length;i++)&#123;</span><br><span class="line">				for(int j&#x3D;i;j&gt;gap-1;j-&#x3D;gap)&#123;</span><br><span class="line">					if(arr[j]&lt;arr[j-gap])&#123;</span><br><span class="line">						swap(arr,j,j-gap);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	static void swap(int[] arr, int i, int j)&#123;</span><br><span class="line">		arr[i] &#x3D; arr[j] + arr[i];</span><br><span class="line">		arr[j] &#x3D; arr[i] - arr[j];</span><br><span class="line">		arr[i] &#x3D; arr[i] - arr[j];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+由于开始时，gap的取值较大，每个子序列中的元素较少，排序速度较快，到排序后期gap取值逐渐变小，子序列中元素个数逐渐增多，但由于前面工作的基础，大多数元素已经基本有序，所以排序速度仍然很快。</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/11/shellsort/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -644,7 +722,7 @@ h&lt;=arr.length/3</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
